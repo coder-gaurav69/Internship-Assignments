@@ -101,6 +101,10 @@ To ensure security, the system implements a strict 24-hour Time-To-Live (TTL) fo
 - **Validation**: On each app load/refresh, the system checks if the current time has exceeded the stored timestamp.
 - **Purge Logic**: If expired, the session is cleared, and the user is redirected to the login view.
 
+- ## 🚀 Live Demo
+
+👉 [https://internship-assignments-mu.vercel.app](https://internship-assignments-mu.vercel.app/)
+
 ### 🛡️ Protected Routes
 
 The application uses a `ProtectedRoute` component to secure sensitive pages. Unauthorized attempts to access `/dashboard` or other private routes are intercepted and redirected to the login page, maintaining data integrity and user privacy.
