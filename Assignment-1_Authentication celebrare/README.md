@@ -59,7 +59,7 @@ src/
 1.  **Clone the Repository**:
     ```bash
     git clone <your-repository-url>
-    cd assignment-1__Authenticaion-system
+    cd Assignment-1_Authentication celebrare
     ```
 
 2.  **Install Dependencies**:
@@ -75,9 +75,6 @@ Create a `.env` file in the root directory and add your Firebase credentials for
 VITE_FIREBASE_API_KEY=your_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
 VITE_APP_NAME="Authentication System"
 ```
 
@@ -110,12 +107,3 @@ The application uses a `ProtectedRoute` component to secure sensitive pages. Una
 
 ---
 
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
-## 🤝 Contribution
-
-Contributions, issues, and feature requests are welcome. Feel free to reach out if you have any questions.
