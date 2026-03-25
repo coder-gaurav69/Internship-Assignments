@@ -4,8 +4,8 @@ import {
   signInWithPopup,
   signOut
 } from "firebase/auth";
-import { collection, getDocs, addDoc } from "firebase/firestore";
-import { auth, provider, db } from "../firebase/firebaseCofig";
+import { auth, provider } from "../firebase/firebaseCofig";
+import { getEventsData } from "../services/eventService";
 
 export const AuthContext = createContext();
 
@@ -38,8 +38,6 @@ export const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
-
-  import { getEventsData } from "../services/eventService";
 
   // ... in AuthProvider:
   useEffect(() => {
