@@ -15,6 +15,15 @@ The primary goal of this project is to provide a seamless, secure, and persisten
 
 ---
 
+## ✨ Latest Updates
+
+- **Simplified EventGrid**: Event listing, loading skeleton, and empty state are now handled in a cleaner single component flow.
+- **Event Search UX**: Dashboard includes event-name filtering with a quick `Clear` action.
+- **Clickable Active Event State**: Last selected event card is highlighted and restored using `localStorage`.
+- **Context-Driven Event Data**: Event fetch + filtering are managed in `AuthContext`, keeping UI components lightweight.
+
+---
+
 ## 🛠️ Technology Stack
 
 | Component | Technology |
@@ -32,16 +41,23 @@ The primary goal of this project is to provide a seamless, secure, and persisten
 
 ```text
 src/
-├── Global/
-│   └── GlobalState.jsx      # Authentication Context & TTL logic
 ├── components/
-│   └── ProtectedRoute.jsx   # Higher-Order Component for route guarding
+│   ├── DashboardHome.jsx    # Dashboard header/user info block
+│   ├── EventGrid.jsx        # Search + loading + event cards UI
+│   ├── Footer.jsx           # Footer section
+│   ├── Navbar.jsx           # Top navigation bar
+│   └── ProtectedRoute.jsx   # Route guard for private pages
+├── context/
+│   └── AuthContext.jsx      # Auth state + event state + filtering logic
 ├── firebase/
-│   ├── firebaseConfig.js    # Firebase initialization & SDK setup
-│   └── googleLogin.js       # Auth provider logic
+│   └── firebaseCofig.js     # Firebase auth/provider initialization
 ├── pages/
-│   ├── Login.jsx            # Entry point for authentication
-│   └── Dashboard.jsx        # Authenticated user interface
+│   ├── Dashboard.jsx        # Protected dashboard page
+│   ├── Login.jsx            # Login page
+│   ├── Register.jsx         # Register page
+│   └── NotFound.jsx         # 404 fallback page
+├── services/
+│   └── eventService.js      # Event data fetch helper
 └── App.jsx                  # Main routing configuration
 ```
 
@@ -101,7 +117,7 @@ To ensure security, the system implements a strict 24-hour Time-To-Live (TTL) fo
 - **Validation**: On each app load/refresh, the system checks if the current time has exceeded the stored timestamp.
 - **Purge Logic**: If expired, the session is cleared, and the user is redirected to the login view.
 
-- ## 🚀 Live Demo
+## 🚀 Live Demo
 
 👉 [https://internship-assignments-mu.vercel.app](https://internship-assignments-mu.vercel.app/)
 

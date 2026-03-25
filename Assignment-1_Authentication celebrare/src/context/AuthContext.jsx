@@ -1,23 +1,22 @@
 import React, { createContext, useState, useEffect } from "react";
-import { 
-  onAuthStateChanged, 
-  signInWithPopup, 
-  signOut 
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut
 } from "firebase/auth";
-import { auth, provider } from "../firebase/firebaseCofig";
-import { getEventsData } from "../services/eventService";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { auth, provider, db } from "../firebase/firebaseCofig";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Event State
   const [events, setEvents] = useState([]);
   const [isEventsLoading, setIsEventsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  
   const [lastClickedId, setLastClickedId] = useState(
     localStorage.getItem("lastClickedEvent") || null
   );
@@ -40,7 +39,9 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // Events Effect using helper
+  import { getEventsData } from "../services/eventService";
+
+  // ... in AuthProvider:
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -55,6 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     fetchEvents();
   }, []);
+
 
   const login = async () => {
     try {
@@ -83,17 +85,17 @@ export const AuthProvider = ({ children }) => {
   );
 
   return (
-    <AuthContext.Provider value={{ 
-        user, 
-        login, 
-        logout, 
-        isLoading, 
-        events: filteredEvents, 
-        isEventsLoading, 
-        searchQuery, 
-        setSearchQuery, 
-        lastClickedId, 
-        handleCardClick 
+    <AuthContext.Provider value={{
+      user,
+      login,
+      logout,
+      isLoading,
+      events: filteredEvents,
+      isEventsLoading,
+      searchQuery,
+      setSearchQuery,
+      lastClickedId,
+      handleCardClick
     }}>
       {children}
     </AuthContext.Provider>
