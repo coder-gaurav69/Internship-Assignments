@@ -1,24 +1,27 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from '../Global/GlobalState'
+import { AuthContext } from '../context/AuthContext'
 
 const Navbar = () => {
-  const { user, handleLogout, sessionExpiresAt } = useContext(GlobalContext)
-
-  const expiryText = sessionExpiresAt
-    ? new Date(sessionExpiresAt).toLocaleString()
-    : 'Session expired'
+  const { user, logout } = useContext(AuthContext)
 
   return (
-    <div className='w-full border-b px-6 py-4 flex items-center justify-between bg-white'>
+    <nav className='w-full border-b px-6 py-4 flex items-center justify-between bg-white shadow-sm'>
       <div>
-        <h1 className='text-xl font-bold'>Dashboard</h1>
-        <p className='text-sm text-gray-600'>Session expires: {expiryText}</p>
+        <h1 className='text-2xl font-extrabold text-blue-600 tracking-tight'>EventManager</h1>
       </div>
-      <div className='flex items-center gap-3'>
-        <p className='text-sm text-gray-700'>{user?.email}</p>
-        <button className='px-4 py-2 bg-blue-500 text-white font-semibold rounded-xl' onClick={handleLogout}>Logout</button>
+      <div className='flex items-center gap-6'>
+        <div className='hidden md:block text-right'>
+          <p className='text-sm font-bold text-gray-900'>{user?.name || "Intern User"}</p>
+          <p className='text-xs text-gray-500 font-medium'>{user?.email}</p>
+        </div>
+        <button 
+          className='px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-bold rounded-lg transition-colors shadow-sm' 
+          onClick={logout}
+        >
+          Logout
+        </button>
       </div>
-    </div>
+    </nav>
   )
 }
 
